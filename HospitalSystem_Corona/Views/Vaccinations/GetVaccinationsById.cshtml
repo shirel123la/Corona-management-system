@@ -1,0 +1,63 @@
+﻿@model IEnumerable<HospitalSystem_Corona.Models.Vaccination>
+
+@{
+    ViewBag.Title = "GetVaccinationsById";
+}
+
+<h2>GetVaccinationsById</h2>
+
+
+<p>
+  
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Patient.first_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Patient.last_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Patient.id_number)
+        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.vaccination_date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Manufacturer.name)
+            </th>*@
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Patient.first_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Patient.last_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Patient.id_number)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.vaccination_date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Manufacturer.name)
+                </td>*@
+
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.vaccination_id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.vaccination_id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.vaccination_id }) |
+
+            </td>
+        </tr>
+    }
+
+</table>

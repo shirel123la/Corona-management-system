@@ -1,0 +1,55 @@
+﻿@model HospitalSystem_Corona.Models.Sickness
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Sickness</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.positive_result)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.positive_result)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.date_of_recovery)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.date_of_recovery)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Patient.first_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Patient.first_name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Patient.id_number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Patient.id_number)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "GetSicknessById", new { id = Model.patient_id })
+        </div>
+    }
+</div>

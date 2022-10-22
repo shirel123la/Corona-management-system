@@ -1,0 +1,34 @@
+﻿@model IEnumerable<HospitalSystem_Corona.Models.Manufacturer>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Manufacturers</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create") |
+    @Html.ActionLink("Back to patients list", "Index","Patients")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.manufacturar_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.manufacturar_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.manufacturar_id })
+        </td>
+    </tr>
+}
+
+</table>

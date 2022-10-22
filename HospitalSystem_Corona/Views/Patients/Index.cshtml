@@ -1,0 +1,102 @@
+﻿@model IEnumerable<HospitalSystem_Corona.Models.Patient>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Patients</h2>
+
+<p>
+    @Html.ActionLink("Create a new patient", "Create","Patients", new { @class = "btn btn-success", @role = "button" })
+    @Html.ActionLink("Create a new vaccination", "Create", "Vaccinations",null, new { @class = "btn btn-success", @role = "button" })
+    @Html.ActionLink("Create a new sickness", "Create", "Sicknesses", null, new { @class = "btn btn-success", @role = "button" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.first_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.last_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.id_number)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.birthday)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.city)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.street)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.building_number)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.apartment_number)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.landline)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mobile_phone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.image)
+        </th>*@
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.first_name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.last_name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.id_number)
+    </td>
+   
+    
+    @* <td>
+            @Html.DisplayFor(modelItem => item.birthday)
+        </td>
+        <td>
+                @Html.DisplayFor(modelItem => item.city)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.street)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.building_number)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.apartment_number)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.landline)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.mobile_phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.image)
+            </td>*@
+
+<td>
+
+    @Html.ActionLink("Personal Details", "Details", new { id = item.patient_id }, new { @class = "btn btn-primary", @role = "button" })
+    @Html.ActionLink("My Vaccinations", "GetVaccinationsById", "Vaccinations", new { id = item.patient_id }, new { @class = "btn btn-primary", @role = "button" })
+    @Html.ActionLink("My Sickness", "GetSicknessById", "Sicknesses", new { id = item.patient_id }, new { @class = "btn btn-primary", @role = "button" })
+    @Html.ActionLink("Edit", "Edit", new { id = item.patient_id }, new { @class = "btn btn-info", @role = "button" })
+    @Html.ActionLink("Delete", "Delete", new { id = item.patient_id }, new { @class = "btn btn-danger", @role = "button" })
+
+</td>
+</tr>
+}
+
+</table>

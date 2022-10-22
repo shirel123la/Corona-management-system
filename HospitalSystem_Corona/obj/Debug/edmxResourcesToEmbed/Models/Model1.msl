@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PersonalInformationModelStoreContainer" CdmEntityContainer="PersonalInformationEntities">
+    <EntitySetMapping Name="Manufacturer">
+      <EntityTypeMapping TypeName="PersonalInformationModel.Manufacturer">
+        <MappingFragment StoreEntitySet="Manufacturer">
+          <ScalarProperty Name="manufacturar_id" ColumnName="manufacturar_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Patient">
+      <EntityTypeMapping TypeName="PersonalInformationModel.Patient">
+        <MappingFragment StoreEntitySet="Patient">
+          <ScalarProperty Name="patient_id" ColumnName="patient_id" />
+          <ScalarProperty Name="first_name" ColumnName="first_name" />
+          <ScalarProperty Name="last_name" ColumnName="last_name" />
+          <ScalarProperty Name="id_number" ColumnName="id_number" />
+          <ScalarProperty Name="birthday" ColumnName="birthday" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="street" ColumnName="street" />
+          <ScalarProperty Name="building_number" ColumnName="building_number" />
+          <ScalarProperty Name="apartment_number" ColumnName="apartment_number" />
+          <ScalarProperty Name="landline" ColumnName="landline" />
+          <ScalarProperty Name="mobile_phone" ColumnName="mobile_phone" />
+          <ScalarProperty Name="image" ColumnName="image" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sickness">
+      <EntityTypeMapping TypeName="PersonalInformationModel.Sickness">
+        <MappingFragment StoreEntitySet="Sickness">
+          <ScalarProperty Name="sickness_id" ColumnName="sickness_id" />
+          <ScalarProperty Name="positive_result" ColumnName="positive_result" />
+          <ScalarProperty Name="date_of_recovery" ColumnName="date_of_recovery" />
+          <ScalarProperty Name="patient_id" ColumnName="patient_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Vaccination">
+      <EntityTypeMapping TypeName="PersonalInformationModel.Vaccination">
+        <MappingFragment StoreEntitySet="Vaccination">
+          <ScalarProperty Name="vaccination_id" ColumnName="vaccination_id" />
+          <ScalarProperty Name="patient_id" ColumnName="patient_id" />
+          <ScalarProperty Name="manufacturer_id" ColumnName="manufacturer_id" />
+          <ScalarProperty Name="vaccination_date" ColumnName="vaccination_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PersonalInformationModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Manufacturer">
+    <Key>
+      <PropertyRef Name="manufacturar_id" />
+    </Key>
+    <Property Name="manufacturar_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Patient">
+    <Key>
+      <PropertyRef Name="patient_id" />
+    </Key>
+    <Property Name="patient_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="first_name" Type="varchar" MaxLength="50" />
+    <Property Name="last_name" Type="varchar" MaxLength="50" />
+    <Property Name="id_number" Type="int" />
+    <Property Name="birthday" Type="date" />
+    <Property Name="city" Type="varchar" MaxLength="50" />
+    <Property Name="street" Type="varchar" MaxLength="50" />
+    <Property Name="building_number" Type="int" />
+    <Property Name="apartment_number" Type="int" />
+    <Property Name="landline" Type="int" />
+    <Property Name="mobile_phone" Type="int" />
+    <Property Name="image" Type="image" />
+  </EntityType>
+  <EntityType Name="Sickness">
+    <Key>
+      <PropertyRef Name="sickness_id" />
+    </Key>
+    <Property Name="sickness_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="positive_result" Type="date" />
+    <Property Name="date_of_recovery" Type="date" />
+    <Property Name="patient_id" Type="int" />
+  </EntityType>
+  <EntityType Name="Vaccination">
+    <Key>
+      <PropertyRef Name="vaccination_id" />
+    </Key>
+    <Property Name="vaccination_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="patient_id" Type="int" />
+    <Property Name="manufacturer_id" Type="int" />
+    <Property Name="vaccination_date" Type="date" />
+  </EntityType>
+  <Association Name="FK_Sickness_Patient">
+    <End Role="Patient" Type="Self.Patient" Multiplicity="0..1" />
+    <End Role="Sickness" Type="Self.Sickness" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Patient">
+        <PropertyRef Name="patient_id" />
+      </Principal>
+      <Dependent Role="Sickness">
+        <PropertyRef Name="patient_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vaccination_Manufacturer">
+    <End Role="Manufacturer" Type="Self.Manufacturer" Multiplicity="0..1" />
+    <End Role="Vaccination" Type="Self.Vaccination" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Manufacturer">
+        <PropertyRef Name="manufacturar_id" />
+      </Principal>
+      <Dependent Role="Vaccination">
+        <PropertyRef Name="manufacturer_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vaccination_Patient">
+    <End Role="Patient" Type="Self.Patient" Multiplicity="0..1" />
+    <End Role="Vaccination" Type="Self.Vaccination" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Patient">
+        <PropertyRef Name="patient_id" />
+      </Principal>
+      <Dependent Role="Vaccination">
+        <PropertyRef Name="patient_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PersonalInformationModelStoreContainer">
+    <EntitySet Name="Manufacturer" EntityType="Self.Manufacturer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Patient" EntityType="Self.Patient" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sickness" EntityType="Self.Sickness" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Vaccination" EntityType="Self.Vaccination" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Sickness_Patient" Association="Self.FK_Sickness_Patient">
+      <End Role="Patient" EntitySet="Patient" />
+      <End Role="Sickness" EntitySet="Sickness" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vaccination_Manufacturer" Association="Self.FK_Vaccination_Manufacturer">
+      <End Role="Manufacturer" EntitySet="Manufacturer" />
+      <End Role="Vaccination" EntitySet="Vaccination" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vaccination_Patient" Association="Self.FK_Vaccination_Patient">
+      <End Role="Patient" EntitySet="Patient" />
+      <End Role="Vaccination" EntitySet="Vaccination" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

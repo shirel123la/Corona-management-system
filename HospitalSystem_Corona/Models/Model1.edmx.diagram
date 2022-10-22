@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="bf81027de54849dc9dd743452ca9c27c" Name="Diagram1" ZoomLevel="86">
+        <EntityTypeShape EntityType="PersonalInformationModel.Manufacturer" Width="1.5" PointX="11" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PersonalInformationModel.Patient" Width="1.5" PointX="2.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PersonalInformationModel.Sickness" Width="1.5" PointX="6.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="PersonalInformationModel.Vaccination" Width="1.5" PointX="7.125" PointY="0.5" IsExpanded="true" />
+        <AssociationConnector Association="PersonalInformationModel.FK_Vaccination_Manufacturer" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonalInformationModel.FK_Sickness_Patient" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonalInformationModel.FK_Vaccination_Patient" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

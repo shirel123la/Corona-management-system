@@ -1,0 +1,49 @@
+﻿@model HospitalSystem_Corona.Models.Sickness
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Sickness</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.positive_result)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.positive_result)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.date_of_recovery)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.date_of_recovery)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Patient.first_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Patient.first_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Patient.id_number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Patient.id_number)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.sickness_id }) |
+    @Html.ActionLink("Back to List", "GetSicknessById", new { id = Model.patient_id })
+</p>

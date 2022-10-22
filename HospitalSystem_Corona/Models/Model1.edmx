@@ -1,0 +1,286 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="PersonalInformationModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Manufacturer">
+          <Key>
+            <PropertyRef Name="manufacturar_id" />
+          </Key>
+          <Property Name="manufacturar_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Patient">
+          <Key>
+            <PropertyRef Name="patient_id" />
+          </Key>
+          <Property Name="patient_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="first_name" Type="varchar" MaxLength="50" />
+          <Property Name="last_name" Type="varchar" MaxLength="50" />
+          <Property Name="id_number" Type="int" />
+          <Property Name="birthday" Type="date" />
+          <Property Name="city" Type="varchar" MaxLength="50" />
+          <Property Name="street" Type="varchar" MaxLength="50" />
+          <Property Name="building_number" Type="int" />
+          <Property Name="apartment_number" Type="int" />
+          <Property Name="landline" Type="int" />
+          <Property Name="mobile_phone" Type="int" />
+          <Property Name="image" Type="image" />
+        </EntityType>
+        <EntityType Name="Sickness">
+          <Key>
+            <PropertyRef Name="sickness_id" />
+          </Key>
+          <Property Name="sickness_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="positive_result" Type="date" />
+          <Property Name="date_of_recovery" Type="date" />
+          <Property Name="patient_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Vaccination">
+          <Key>
+            <PropertyRef Name="vaccination_id" />
+          </Key>
+          <Property Name="vaccination_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="patient_id" Type="int" />
+          <Property Name="manufacturer_id" Type="int" />
+          <Property Name="vaccination_date" Type="date" />
+        </EntityType>
+        <Association Name="FK_Sickness_Patient">
+          <End Role="Patient" Type="Self.Patient" Multiplicity="0..1" />
+          <End Role="Sickness" Type="Self.Sickness" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="patient_id" />
+            </Principal>
+            <Dependent Role="Sickness">
+              <PropertyRef Name="patient_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vaccination_Manufacturer">
+          <End Role="Manufacturer" Type="Self.Manufacturer" Multiplicity="0..1" />
+          <End Role="Vaccination" Type="Self.Vaccination" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Manufacturer">
+              <PropertyRef Name="manufacturar_id" />
+            </Principal>
+            <Dependent Role="Vaccination">
+              <PropertyRef Name="manufacturer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vaccination_Patient">
+          <End Role="Patient" Type="Self.Patient" Multiplicity="0..1" />
+          <End Role="Vaccination" Type="Self.Vaccination" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="patient_id" />
+            </Principal>
+            <Dependent Role="Vaccination">
+              <PropertyRef Name="patient_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PersonalInformationModelStoreContainer">
+          <EntitySet Name="Manufacturer" EntityType="Self.Manufacturer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Patient" EntityType="Self.Patient" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sickness" EntityType="Self.Sickness" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vaccination" EntityType="Self.Vaccination" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Sickness_Patient" Association="Self.FK_Sickness_Patient">
+            <End Role="Patient" EntitySet="Patient" />
+            <End Role="Sickness" EntitySet="Sickness" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vaccination_Manufacturer" Association="Self.FK_Vaccination_Manufacturer">
+            <End Role="Manufacturer" EntitySet="Manufacturer" />
+            <End Role="Vaccination" EntitySet="Vaccination" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vaccination_Patient" Association="Self.FK_Vaccination_Patient">
+            <End Role="Patient" EntitySet="Patient" />
+            <End Role="Vaccination" EntitySet="Vaccination" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PersonalInformationModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Manufacturer">
+          <Key>
+            <PropertyRef Name="manufacturar_id" />
+          </Key>
+          <Property Name="manufacturar_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Vaccination" Relationship="Self.FK_Vaccination_Manufacturer" FromRole="Manufacturer" ToRole="Vaccination" />
+        </EntityType>
+        <EntityType Name="Patient">
+          <Key>
+            <PropertyRef Name="patient_id" />
+          </Key>
+          <Property Name="patient_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="first_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="id_number" Type="Int32" />
+          <Property Name="birthday" Type="DateTime" Precision="0" />
+          <Property Name="city" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="street" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="building_number" Type="Int32" />
+          <Property Name="apartment_number" Type="Int32" />
+          <Property Name="landline" Type="Int32" />
+          <Property Name="mobile_phone" Type="Int32" />
+          <Property Name="image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Sickness" Relationship="Self.FK_Sickness_Patient" FromRole="Patient" ToRole="Sickness" />
+          <NavigationProperty Name="Vaccination" Relationship="Self.FK_Vaccination_Patient" FromRole="Patient" ToRole="Vaccination" />
+        </EntityType>
+        <EntityType Name="Sickness">
+          <Key>
+            <PropertyRef Name="sickness_id" />
+          </Key>
+          <Property Name="sickness_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="positive_result" Type="DateTime" Precision="0" />
+          <Property Name="date_of_recovery" Type="DateTime" Precision="0" />
+          <Property Name="patient_id" Type="Int32" />
+          <NavigationProperty Name="Patient" Relationship="Self.FK_Sickness_Patient" FromRole="Sickness" ToRole="Patient" />
+        </EntityType>
+        <EntityType Name="Vaccination">
+          <Key>
+            <PropertyRef Name="vaccination_id" />
+          </Key>
+          <Property Name="vaccination_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="patient_id" Type="Int32" />
+          <Property Name="manufacturer_id" Type="Int32" />
+          <Property Name="vaccination_date" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Manufacturer" Relationship="Self.FK_Vaccination_Manufacturer" FromRole="Vaccination" ToRole="Manufacturer" />
+          <NavigationProperty Name="Patient" Relationship="Self.FK_Vaccination_Patient" FromRole="Vaccination" ToRole="Patient" />
+        </EntityType>
+        <Association Name="FK_Vaccination_Manufacturer">
+          <End Role="Manufacturer" Type="Self.Manufacturer" Multiplicity="0..1" />
+          <End Role="Vaccination" Type="Self.Vaccination" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Manufacturer">
+              <PropertyRef Name="manufacturar_id" />
+            </Principal>
+            <Dependent Role="Vaccination">
+              <PropertyRef Name="manufacturer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sickness_Patient">
+          <End Role="Patient" Type="Self.Patient" Multiplicity="0..1" />
+          <End Role="Sickness" Type="Self.Sickness" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="patient_id" />
+            </Principal>
+            <Dependent Role="Sickness">
+              <PropertyRef Name="patient_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vaccination_Patient">
+          <End Role="Patient" Type="Self.Patient" Multiplicity="0..1" />
+          <End Role="Vaccination" Type="Self.Vaccination" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="patient_id" />
+            </Principal>
+            <Dependent Role="Vaccination">
+              <PropertyRef Name="patient_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PersonalInformationEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Manufacturer" EntityType="Self.Manufacturer" />
+          <EntitySet Name="Patient" EntityType="Self.Patient" />
+          <EntitySet Name="Sickness" EntityType="Self.Sickness" />
+          <EntitySet Name="Vaccination" EntityType="Self.Vaccination" />
+          <AssociationSet Name="FK_Vaccination_Manufacturer" Association="Self.FK_Vaccination_Manufacturer">
+            <End Role="Manufacturer" EntitySet="Manufacturer" />
+            <End Role="Vaccination" EntitySet="Vaccination" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sickness_Patient" Association="Self.FK_Sickness_Patient">
+            <End Role="Patient" EntitySet="Patient" />
+            <End Role="Sickness" EntitySet="Sickness" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vaccination_Patient" Association="Self.FK_Vaccination_Patient">
+            <End Role="Patient" EntitySet="Patient" />
+            <End Role="Vaccination" EntitySet="Vaccination" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PersonalInformationModelStoreContainer" CdmEntityContainer="PersonalInformationEntities">
+          <EntitySetMapping Name="Manufacturer">
+            <EntityTypeMapping TypeName="PersonalInformationModel.Manufacturer">
+              <MappingFragment StoreEntitySet="Manufacturer">
+                <ScalarProperty Name="manufacturar_id" ColumnName="manufacturar_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Patient">
+            <EntityTypeMapping TypeName="PersonalInformationModel.Patient">
+              <MappingFragment StoreEntitySet="Patient">
+                <ScalarProperty Name="patient_id" ColumnName="patient_id" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="id_number" ColumnName="id_number" />
+                <ScalarProperty Name="birthday" ColumnName="birthday" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="street" ColumnName="street" />
+                <ScalarProperty Name="building_number" ColumnName="building_number" />
+                <ScalarProperty Name="apartment_number" ColumnName="apartment_number" />
+                <ScalarProperty Name="landline" ColumnName="landline" />
+                <ScalarProperty Name="mobile_phone" ColumnName="mobile_phone" />
+                <ScalarProperty Name="image" ColumnName="image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sickness">
+            <EntityTypeMapping TypeName="PersonalInformationModel.Sickness">
+              <MappingFragment StoreEntitySet="Sickness">
+                <ScalarProperty Name="sickness_id" ColumnName="sickness_id" />
+                <ScalarProperty Name="positive_result" ColumnName="positive_result" />
+                <ScalarProperty Name="date_of_recovery" ColumnName="date_of_recovery" />
+                <ScalarProperty Name="patient_id" ColumnName="patient_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vaccination">
+            <EntityTypeMapping TypeName="PersonalInformationModel.Vaccination">
+              <MappingFragment StoreEntitySet="Vaccination">
+                <ScalarProperty Name="vaccination_id" ColumnName="vaccination_id" />
+                <ScalarProperty Name="patient_id" ColumnName="patient_id" />
+                <ScalarProperty Name="manufacturer_id" ColumnName="manufacturer_id" />
+                <ScalarProperty Name="vaccination_date" ColumnName="vaccination_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

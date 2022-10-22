@@ -1,0 +1,127 @@
+﻿@model HospitalSystem_Corona.Models.Vaccination
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Vaccination</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Patient.first_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Patient.first_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Patient.last_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Patient.last_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Patient.id_number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Patient.id_number)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Patient.birthday)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Patient.birthday)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Patient.city)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Patient.city)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Patient.street)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Patient.street)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Patient.building_number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Patient.building_number)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Patient.apartment_number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Patient.apartment_number)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Patient.landline)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Patient.landline)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Patient.mobile_phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Patient.mobile_phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.vaccination_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.vaccination_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Manufacturer.name)
+        </dt>
+
+
+        <dd>
+            @Html.DisplayFor(model => model.Manufacturer.name)
+        </dd>
+
+        @*<dt>
+                    @Html.DisplayNameFor(model => model.Patient.id_number)
+                </dt>
+
+                <dd>
+        <a href="~/Views/Vaccinations/Details.cshtml">~/Views/Vaccinations/Details.cshtml</a>
+                    @Html.DisplayFor(model => model.Patient.id_number)
+                </dd>*@
+
+
+    </dl>
+</div>
+<p>
+
+    @Html.ActionLink("Edit", "Edit", new { id = Model.vaccination_id }) |
+    @Html.ActionLink("Back to List", "GetVaccinationsById", new { id = Model.patient_id })
+ 
+</p>

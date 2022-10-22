@@ -1,0 +1,52 @@
+﻿@model IEnumerable<HospitalSystem_Corona.Models.Sickness>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Sicknesses</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create") |
+    @Html.ActionLink("Back to patients list", "Index", "Patients")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.positive_result)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.date_of_recovery)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Patient.first_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Patient.id_number)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.positive_result)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.date_of_recovery)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Patient.first_name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Patient.id_number)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.sickness_id }) |
+        @Html.ActionLink("Details", "Details", new { id = item.sickness_id }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.sickness_id })
+    </td>
+</tr>
+}
+
+</table>
