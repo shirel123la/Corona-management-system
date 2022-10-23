@@ -27,6 +27,7 @@ namespace HospitalSystem_Corona.Models
         [Display(Name = "manufacturer id")]
         public Nullable<int> manufacturer_id { get; set; }
 
+        [Required(ErrorMessage = "Required* ")]
         [Display(Name = "vaccination date")]
         [DataType(DataType.Date)]
         public Nullable<System.DateTime> vaccination_date { get; set; }
