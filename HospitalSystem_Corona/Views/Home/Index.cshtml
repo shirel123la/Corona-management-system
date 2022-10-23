@@ -3,53 +3,25 @@
 }
 
 
-@*<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
-
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>*@
-
 <html>
 
 
 <body>
-    <div class="container">
+    <div class="container" >
 
        
-        <div class="jumbotron">
-            <h1>Corona management system for HMO</h1>
-            <p class="lead">In this web you can see details about our patients and about corona vairus </p>
-            <p class="lead">You can also create new patients or edit/delete exist patient </p>
-            <p> HAVE A GOOD DAY!</p>
+        <div >
+            <h1>Corona management system</h1>
+            <p class="lead"> This website is designed to manage HMO customers and their corona information</p>
+           
+            <p class="lead"> Great day and good health!</p>
+           
         </div>
 
     </div>
-
-    @*<form method="POST" action="Patients/index">
-        <input type="submit" />
-    </form>*@
+    <p>
+        @Html.ActionLink("GO TO PATIRNTS LIST", "Index", "Patients",null, new { @class ="btn btn-primary btn-lg btn-block", @role = "button" })
+    </p>
 </body>
 
 </html>
